@@ -1,5 +1,4 @@
-#from datetime import datetime
-import masks
+import masks # type: ignore
 
 
 def mask_account_card(input_string: str) -> str:
@@ -48,7 +47,7 @@ if __name__ == "__main__":
         "Visa Classic 6831982476737658",
         "Visa Platinum 8990922113665229",
         "Visa Gold 5999414228426353",
-        "Счет 73654108430135874305"
+        "Счет 73654108430135874305",
     ]
 
     for card_data in card_examples:
@@ -56,11 +55,7 @@ if __name__ == "__main__":
         print(f"Выход функции: {mask_account_card(card_data)}")
         print("---")
 
-    date_examples = [
-        "2024-03-11T02:26:18.671407",
-        "2023-12-25T15:45:30.123456",
-        "invalid date"
-    ]
+    date_examples = ["2024-03-11T02:26:18.671407", "2023-12-25T15:45:30.123456", "invalid date"]
 
     for date_data in date_examples:
         print(f"Входной аргумент: {date_data}")
