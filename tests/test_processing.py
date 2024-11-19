@@ -11,27 +11,47 @@ data = [
 ]
 
 
-def test_filter_by_state() -> None:
+@pytest.fixture
+def test_data():
+    return data
+
+
+@pytest.mark.parametrize("state, expected_length", [("EXECUTED", 3), ("CANCELLED", 1)])
+def test_filter_by_state(test_data, state, expected_length):
     # Тестирование фильтрации по состоянию
-    executed_transactions = filter_by_state(data, "EXECUTED")
-    assert len(executed_transactions) == 3
-    assert all(item["state"] == "EXECUTED" for item in executed_transactions)
-
-    cancelled_transactions = filter_by_state(data, "CANCELLED")
-    assert len(cancelled_transactions) == 1
-    assert cancelled_transactions[0]["state"] == "CANCELLED"
+    filtered_transactions = filter_by_state(test_data, state)
+    assert len(filtered_transactions) == expected_length
+    assert all(item["state"] == state for item in filtered_transactions)
 
 
-def test_sort_by_date() -> None:
+@pytest.mark.parametrize(
+    "reverse_order, expected_dates",
+    [
+        (
+            True,
+            [
+                "2024-01-05T12:00:00.000000",
+                "2024-01-03T12:00:00.000000",
+                "2024-01-02T12:00:00.000000",
+                "2024-01-01T12:00:00.000000",
+            ],
+        ),
+        (
+            False,
+            [
+                "2024-01-01T12:00:00.000000",
+                "2024-01-02T12:00:00.000000",
+                "2024-01-03T12:00:00.000000",
+                "2024-01-05T12:00:00.000000",
+            ],
+        ),
+    ],
+)
+def test_sort_by_date(test_data, reverse_order, expected_dates):
     # Тестирование сортировки по дате
-    sorted_data = sort_by_date(data)
-    assert sorted_data[0]["date"] == "2024-01-05T12:00:00.000000"  # Последняя по дате
-    assert sorted_data[3]["date"] == "2024-01-01T12:00:00.000000"  # Первая по дате
-
-    # Проверка сортировки в обратном порядке
-    sorted_data_desc = sort_by_date(data, reverse_order=False)
-    assert sorted_data_desc[0]["date"] == "2024-01-01T12:00:00.000000"  # Первая по дате
-    assert sorted_data_desc[3]["date"] == "2024-01-05T12:00:00.000000"  # Последняя по дате
+    sorted_data = sort_by_date(test_data, reverse_order)
+    sorted_dates = [item["date"] for item in sorted_data]
+    assert sorted_dates == expected_dates
 
 
 # Запуск тестов
