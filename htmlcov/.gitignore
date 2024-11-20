@@ -1,2 +1,2 @@
 # Игнорируем все файлы в папке htmlcov
-#htmlcov/*
+htmlcov/*
