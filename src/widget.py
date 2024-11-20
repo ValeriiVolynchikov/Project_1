@@ -1,4 +1,6 @@
-import masks # type: ignore
+from datetime import datetime
+
+import masks  # type: ignore
 
 
 def mask_account_card(input_string: str) -> str:
@@ -22,17 +24,23 @@ def mask_account_card(input_string: str) -> str:
         return f"Ошибка: {e}"
 
 
-def get_date(date_string: str) -> str:
+def get_date(input_string: str) -> str:
     """
     Преобразует строку с датой в формате 'YYYY-MM-DDTHH:MM:SS.ssssss' в формат 'DD.MM.YYYY'.
+    Возвращает пустую строку при неверном формате или невалидной дате.
     """
+    input_string = input_string.strip()
+
+    if not input_string:
+        return ""
+
     try:
-        date_part = date_string.split("T")[0]  # Разделяем строку по символу "T"
-        year, month, day = date_part.split("-")  # Разделяем дату символом "-"
-        return f"{day}.{month}.{year}"
+        # Парсим дату из строки
+        date_object = datetime.fromisoformat(input_string[:-7])  # Убираем последние 7 символов
+        return date_object.strftime("%d.%m.%Y")
     except ValueError:
-        print("Ошибка: Неверный формат даты. Ожидаемый: 'YYYY-MM-DDTHH:MM:SS.ssssss'")
-        return ""  # Возвращаем пустую строку вместо None
+        # Если произошла ошибка при парсинге, возвращаем пустую строку
+        return ""
 
 
 # Примеры использования
