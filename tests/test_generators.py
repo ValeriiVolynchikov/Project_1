@@ -107,7 +107,8 @@ def test_transaction_descriptions(transactions):
             ],
         ),
         (5, 5, ["0000 0000 0000 0005"]),
-        (100, 102, ["0000 0000 0001 0000", "0000 0000 0001 0001", "0000 0000 0001 0002"]),
+        (99999999, 100000000, ["0000 0000 9999 9999", "0000 0001 0000 0000"]),
+        (100, 102, ["0000 0000 0000 0100", "0000 0000 0000 0101", "0000 0000 0000 0102"]),
     ],
 )
 def test_card_number_generator(start, end, expected):
@@ -115,5 +116,5 @@ def test_card_number_generator(start, end, expected):
     assert generated_numbers == expected
 
     # Проверка обработки крайних значений
-    assert list(card_number_generator(9999, 10000)) == ["0000 0000 9999 9999", "0000 0001 0000 0000"]
+    assert list(card_number_generator(99999999, 100000000)) == ["0000 0000 9999 9999", "0000 0001 0000 0000"]
     assert list(card_number_generator(1, 0)) == []  # Если диапазон неправильный, должен быть пустой список
