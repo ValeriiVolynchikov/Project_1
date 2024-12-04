@@ -1,48 +1,35 @@
-import os
-
 import pytest
+from decorators import log  # Импортируйте Ваш декоратор
 
-from decorators import log
 
-
-# Пример функции для тестирования
-@log(filename="test_log.txt")
-def add(x, y):
-    """Функция сложения."""
+# Пример успешной функции
+@log(filename="mylog.txt")
+def successful_function(x, y):
     return x + y
 
 
-@log()
-def divide(x, y):
-    """Функция деления."""
+# Пример функции, которая вызывает ошибку
+@log(filename="mylog.txt")
+def error_function(x, y):
     return x / y
 
 
-# Тестируем успешное выполнение функции
-def test_add(capsys):
-    result = add(1, 2)
+def test_successful_function(capsys):
+    result = successful_function(1, 2)
     assert result == 3
 
-    # Проверяем вывод в файл
-    with open("test_log.txt", "r") as f:
-        logs = f.readlines()
-    assert any("add ok" in line for line in logs)
+    # Проверка вывода в файл
+    with open("logs/mylog.txt", "r") as log_file:
+        log_content = log_file.readlines()
+        assert any("successful_function called at" in line for line in log_content)
+        assert "successful_function result: 3" in log_content[-1]
 
 
-# Тестируем обработку исключений
-def test_divide_by_zero(capsys):
+def test_error_function(capsys):
     with pytest.raises(ZeroDivisionError):
-        divide(1, 0)
+        error_function(1, 0)
 
-    # Проверяем, что ошибка записана в логи
-    with open("test_log.txt", "r") as f:
-        logs = f.readlines()
-    assert any("divide error: ZeroDivisionError" in line for line in logs)
-
-
-# Удаляем тестовый лог-файл после тестов
-@pytest.fixture(autouse=True)
-def cleanup():
-    yield
-    if os.path.exists("test_log.txt"):
-        os.remove("test_log.txt")
+    # Проверка вывода в файл
+    with open("logs/mylog.txt", "r") as log_file:
+        log_content = log_file.readlines()
+        assert any("error_function error: ZeroDivisionError" in line for line in log_content)

@@ -1,33 +1,45 @@
-import functools
 import logging
+import os
+from datetime import datetime
+
+
+# Настройка логирования
+def setup_logger(filename=None):
+    logger = logging.getLogger("my_logger")
+    logger.setLevel(logging.DEBUG)
+    formatter = logging.Formatter("%(asctime)s - %(message)s")
+
+    if filename is not None:
+        log_file = os.path.join("logs", filename)
+        os.makedirs(os.path.dirname(log_file), exist_ok=True)  # Создание папки, если не существует
+        file_handler = logging.FileHandler(log_file)
+        file_handler.setFormatter(formatter)
+        logger.addHandler(file_handler)
+    else:
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(formatter)
+        logger.addHandler(console_handler)
+
+    return logger
 
 
 def log(filename=None):
-    """Декоратор, который логирует начало и конец выполнения функции,
-    ее результаты, а также возникающие ошибки.
-
-    Аргументы:
-    filename -- Имя файла для записи логов (если не указано, логи выводятся в консоль).
-    """
-
-    # Установка логирования
-    if filename:
-        logging.basicConfig(filename=filename, level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-    else:
-        logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+    logger = setup_logger(filename)
 
     def decorator(func):
-        @functools.wraps(func)
         def wrapper(*args, **kwargs):
-            """Обертка для логирования вызовов функции."""
+            function_name = func.__name__
+            start_time = datetime.now()
+            logger.info(f"{function_name} called at {start_time.isoformat()} with args: {args} and kwargs: {kwargs}")
+
             try:
-                logging.info(f"Starting {func.__name__}: Inputs: {args}, {kwargs}")
                 result = func(*args, **kwargs)
-                logging.info(f"{func.__name__} ok: Result: {result}")
+                logger.info(f"{function_name} result: {result}")
                 return result
             except Exception as e:
-                logging.error(f"{func.__name__} error: {type(e).__name__}. Inputs: {args}, {kwargs}")
-                raise  # повторно выбрасываем исключение
+                error_message = f"{function_name} error: {type(e).__name__}. Inputs: {args}, {kwargs}"
+                logger.error(error_message)
+                raise
 
         return wrapper
 
