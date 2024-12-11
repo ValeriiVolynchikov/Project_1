@@ -118,3 +118,115 @@
 2024-12-05 09:52:23,593 - error_function called at 2024-12-05T09:52:23.593511 with args: (1, 0) and kwargs: {}
 2024-12-05 09:52:23,593 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
 2024-12-05 09:52:23,593 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 19:15:50,998 - successful_function called at 2024-12-10T19:15:50.997029 with args: (1, 2) and kwargs: {}
+2024-12-10 19:15:50,998 - successful_function called at 2024-12-10T19:15:50.997029 with args: (1, 2) and kwargs: {}
+2024-12-10 19:15:51,000 - successful_function result: 3
+2024-12-10 19:15:51,000 - successful_function result: 3
+2024-12-10 19:15:51,002 - error_function called at 2024-12-10T19:15:51.002815 with args: (1, 0) and kwargs: {}
+2024-12-10 19:15:51,002 - error_function called at 2024-12-10T19:15:51.002815 with args: (1, 0) and kwargs: {}
+2024-12-10 19:15:51,002 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 19:15:51,002 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 19:18:36,171 - successful_function called at 2024-12-10T19:18:36.171124 with args: (1, 2) and kwargs: {}
+2024-12-10 19:18:36,171 - successful_function called at 2024-12-10T19:18:36.171124 with args: (1, 2) and kwargs: {}
+2024-12-10 19:18:36,174 - successful_function result: 3
+2024-12-10 19:18:36,174 - successful_function result: 3
+2024-12-10 19:18:36,177 - error_function called at 2024-12-10T19:18:36.177108 with args: (1, 0) and kwargs: {}
+2024-12-10 19:18:36,177 - error_function called at 2024-12-10T19:18:36.177108 with args: (1, 0) and kwargs: {}
+2024-12-10 19:18:36,177 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 19:18:36,177 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 19:23:31,359 - successful_function called at 2024-12-10T19:23:31.359346 with args: (1, 2) and kwargs: {}
+2024-12-10 19:23:31,359 - successful_function called at 2024-12-10T19:23:31.359346 with args: (1, 2) and kwargs: {}
+2024-12-10 19:23:31,360 - successful_function result: 3
+2024-12-10 19:23:31,360 - successful_function result: 3
+2024-12-10 19:23:31,362 - error_function called at 2024-12-10T19:23:31.362296 with args: (1, 0) and kwargs: {}
+2024-12-10 19:23:31,362 - error_function called at 2024-12-10T19:23:31.362296 with args: (1, 0) and kwargs: {}
+2024-12-10 19:23:31,362 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 19:23:31,362 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 19:30:27,101 - successful_function called at 2024-12-10T19:30:27.101622 with args: (1, 2) and kwargs: {}
+2024-12-10 19:30:27,101 - successful_function called at 2024-12-10T19:30:27.101622 with args: (1, 2) and kwargs: {}
+2024-12-10 19:30:27,103 - successful_function result: 3
+2024-12-10 19:30:27,103 - successful_function result: 3
+2024-12-10 19:30:27,105 - error_function called at 2024-12-10T19:30:27.105223 with args: (1, 0) and kwargs: {}
+2024-12-10 19:30:27,105 - error_function called at 2024-12-10T19:30:27.105223 with args: (1, 0) and kwargs: {}
+2024-12-10 19:30:27,106 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 19:30:27,106 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 19:38:55,573 - successful_function called at 2024-12-10T19:38:55.573019 with args: (1, 2) and kwargs: {}
+2024-12-10 19:38:55,573 - successful_function called at 2024-12-10T19:38:55.573019 with args: (1, 2) and kwargs: {}
+2024-12-10 19:38:55,575 - successful_function result: 3
+2024-12-10 19:38:55,575 - successful_function result: 3
+2024-12-10 19:38:55,579 - error_function called at 2024-12-10T19:38:55.579030 with args: (1, 0) and kwargs: {}
+2024-12-10 19:38:55,579 - error_function called at 2024-12-10T19:38:55.579030 with args: (1, 0) and kwargs: {}
+2024-12-10 19:38:55,579 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 19:38:55,579 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 19:41:21,095 - successful_function called at 2024-12-10T19:41:21.095853 with args: (1, 2) and kwargs: {}
+2024-12-10 19:41:21,095 - successful_function called at 2024-12-10T19:41:21.095853 with args: (1, 2) and kwargs: {}
+2024-12-10 19:41:21,097 - successful_function result: 3
+2024-12-10 19:41:21,097 - successful_function result: 3
+2024-12-10 19:41:21,100 - error_function called at 2024-12-10T19:41:21.100839 with args: (1, 0) and kwargs: {}
+2024-12-10 19:41:21,100 - error_function called at 2024-12-10T19:41:21.100839 with args: (1, 0) and kwargs: {}
+2024-12-10 19:41:21,100 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 19:41:21,100 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 19:45:15,318 - successful_function called at 2024-12-10T19:45:15.317456 with args: (1, 2) and kwargs: {}
+2024-12-10 19:45:15,318 - successful_function called at 2024-12-10T19:45:15.317456 with args: (1, 2) and kwargs: {}
+2024-12-10 19:45:15,319 - successful_function result: 3
+2024-12-10 19:45:15,319 - successful_function result: 3
+2024-12-10 19:45:15,322 - error_function called at 2024-12-10T19:45:15.322919 with args: (1, 0) and kwargs: {}
+2024-12-10 19:45:15,322 - error_function called at 2024-12-10T19:45:15.322919 with args: (1, 0) and kwargs: {}
+2024-12-10 19:45:15,323 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 19:45:15,323 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 20:03:32,311 - successful_function called at 2024-12-10T20:03:32.311407 with args: (1, 2) and kwargs: {}
+2024-12-10 20:03:32,311 - successful_function called at 2024-12-10T20:03:32.311407 with args: (1, 2) and kwargs: {}
+2024-12-10 20:03:32,313 - successful_function result: 3
+2024-12-10 20:03:32,313 - successful_function result: 3
+2024-12-10 20:03:32,316 - error_function called at 2024-12-10T20:03:32.316827 with args: (1, 0) and kwargs: {}
+2024-12-10 20:03:32,316 - error_function called at 2024-12-10T20:03:32.316827 with args: (1, 0) and kwargs: {}
+2024-12-10 20:03:32,316 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 20:03:32,316 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 20:21:50,408 - successful_function called at 2024-12-10T20:21:50.408676 with args: (1, 2) and kwargs: {}
+2024-12-10 20:21:50,408 - successful_function called at 2024-12-10T20:21:50.408676 with args: (1, 2) and kwargs: {}
+2024-12-10 20:21:50,410 - successful_function result: 3
+2024-12-10 20:21:50,410 - successful_function result: 3
+2024-12-10 20:21:50,415 - error_function called at 2024-12-10T20:21:50.415752 with args: (1, 0) and kwargs: {}
+2024-12-10 20:21:50,415 - error_function called at 2024-12-10T20:21:50.415752 with args: (1, 0) and kwargs: {}
+2024-12-10 20:21:50,415 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 20:21:50,415 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 23:15:47,226 - successful_function called at 2024-12-10T23:15:47.226226 with args: (1, 2) and kwargs: {}
+2024-12-10 23:15:47,226 - successful_function called at 2024-12-10T23:15:47.226226 with args: (1, 2) and kwargs: {}
+2024-12-10 23:15:47,227 - successful_function result: 3
+2024-12-10 23:15:47,227 - successful_function result: 3
+2024-12-10 23:15:47,231 - error_function called at 2024-12-10T23:15:47.231482 with args: (1, 0) and kwargs: {}
+2024-12-10 23:15:47,231 - error_function called at 2024-12-10T23:15:47.231482 with args: (1, 0) and kwargs: {}
+2024-12-10 23:15:47,231 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 23:15:47,231 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 23:20:15,119 - successful_function called at 2024-12-10T23:20:15.119369 with args: (1, 2) and kwargs: {}
+2024-12-10 23:20:15,119 - successful_function called at 2024-12-10T23:20:15.119369 with args: (1, 2) and kwargs: {}
+2024-12-10 23:20:15,121 - successful_function result: 3
+2024-12-10 23:20:15,121 - successful_function result: 3
+2024-12-10 23:20:15,125 - error_function called at 2024-12-10T23:20:15.125968 with args: (1, 0) and kwargs: {}
+2024-12-10 23:20:15,125 - error_function called at 2024-12-10T23:20:15.125968 with args: (1, 0) and kwargs: {}
+2024-12-10 23:20:15,125 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 23:20:15,125 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 23:24:21,190 - successful_function called at 2024-12-10T23:24:21.190341 with args: (1, 2) and kwargs: {}
+2024-12-10 23:24:21,190 - successful_function called at 2024-12-10T23:24:21.190341 with args: (1, 2) and kwargs: {}
+2024-12-10 23:24:21,192 - successful_function result: 3
+2024-12-10 23:24:21,192 - successful_function result: 3
+2024-12-10 23:24:21,197 - error_function called at 2024-12-10T23:24:21.197790 with args: (1, 0) and kwargs: {}
+2024-12-10 23:24:21,197 - error_function called at 2024-12-10T23:24:21.197790 with args: (1, 0) and kwargs: {}
+2024-12-10 23:24:21,197 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 23:24:21,197 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 23:33:24,105 - successful_function called at 2024-12-10T23:33:24.105087 with args: (1, 2) and kwargs: {}
+2024-12-10 23:33:24,105 - successful_function called at 2024-12-10T23:33:24.105087 with args: (1, 2) and kwargs: {}
+2024-12-10 23:33:24,106 - successful_function result: 3
+2024-12-10 23:33:24,106 - successful_function result: 3
+2024-12-10 23:33:24,111 - error_function called at 2024-12-10T23:33:24.111423 with args: (1, 0) and kwargs: {}
+2024-12-10 23:33:24,111 - error_function called at 2024-12-10T23:33:24.111423 with args: (1, 0) and kwargs: {}
+2024-12-10 23:33:24,112 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-10 23:33:24,112 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-11 09:40:41,568 - successful_function called at 2024-12-11T09:40:41.568175 with args: (1, 2) and kwargs: {}
+2024-12-11 09:40:41,568 - successful_function called at 2024-12-11T09:40:41.568175 with args: (1, 2) and kwargs: {}
+2024-12-11 09:40:41,569 - successful_function result: 3
+2024-12-11 09:40:41,569 - successful_function result: 3
+2024-12-11 09:40:41,574 - error_function called at 2024-12-11T09:40:41.574055 with args: (1, 0) and kwargs: {}
+2024-12-11 09:40:41,574 - error_function called at 2024-12-11T09:40:41.574055 with args: (1, 0) and kwargs: {}
+2024-12-11 09:40:41,574 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
+2024-12-11 09:40:41,574 - error_function error: ZeroDivisionError. Inputs: (1, 0), {}
