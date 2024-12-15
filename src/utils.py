@@ -2,6 +2,10 @@ import json
 import os
 import logging
 
+# Создание папки logs, если она не существует
+if not os.path.exists('logs'):
+    os.makedirs('logs')
+
 # Настройка логирования
 logger = logging.getLogger("utils")
 logger.setLevel(logging.DEBUG)  # Уровень логирования не ниже DEBUG
