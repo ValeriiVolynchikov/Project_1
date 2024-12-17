@@ -9,7 +9,8 @@ if not os.path.exists("logs"):
     os.makedirs("logs")
 
 # Настройка логирования
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+log_file_path = "../logs/transactions.log"
+logging.basicConfig(filename=log_file_path, level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
 
