@@ -1,7 +1,12 @@
 import logging
+import os
 from typing import Dict, List
 
 import pandas as pd
+
+# Создание папки logs, если она не существует
+if not os.path.exists("logs"):
+    os.makedirs("logs")
 
 # Настройка логирования
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -19,6 +24,9 @@ def read_transactions_from_csv(file_path: str) -> List[Dict]:
         List[Dict]: Список словарей с транзакциями.
     """
     logger.info(f"Попытка прочитать данные из CSV файла: {file_path}")
+    if not os.path.exists(file_path):
+        logger.error(f"Файл {file_path} не найден.")
+        raise FileNotFoundError(f"Файл {file_path} не найден.")
     try:
         df = pd.read_csv(file_path)
         transactions = df.to_dict(orient="records")
@@ -40,6 +48,9 @@ def read_transactions_from_excel(file_path: str) -> List[Dict]:
         List[Dict]: Список словарей с транзакциями.
     """
     logger.info(f"Попытка прочитать данные из Excel файла: {file_path}")
+    if not os.path.exists(file_path):
+        logger.error(f"Файл {file_path} не найден.")
+        raise FileNotFoundError(f"Файл {file_path} не найден.")
     try:
         df = pd.read_excel(file_path)
         transactions = df.to_dict(orient="records")
