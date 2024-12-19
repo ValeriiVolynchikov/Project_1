@@ -2,7 +2,8 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from data_reader import read_transactions_from_csv, read_transactions_from_excel
+from src.data_reader import (count_transactions_by_category, filter_transactions, read_transactions_from_csv,
+                             read_transactions_from_excel)
 
 
 def test_read_transactions_from_csv():
@@ -41,3 +42,52 @@ def test_file_not_found_excel():
     with patch("os.path.exists", return_value=False):  # Подмена os.path.exists
         with pytest.raises(FileNotFoundError):
             read_transactions_from_excel("non_existent_file.xlsx")
+
+
+def test_filter_transactions():
+    """Тестирование фильтрации транзакций по строке поиска."""
+    transactions = [
+        {"description": "Перевод с карты на карту", "amount": 1000, "currency": "RUB"},
+        {"description": "Открытие вклада", "amount": 5000, "currency": "RUB"},
+        {"description": "Перевод на счет", "amount": 2000, "currency": "USD"},
+    ]
+    search_string = "вклад"
+    result = filter_transactions(transactions, search_string)
+    assert len(result) == 1
+    assert result[0]["description"] == "Открытие вклада"
+
+
+def test_filter_transactions_no_match():
+    """Тестирование фильтрации транзакций, когда нет совпадений."""
+    transactions = [
+        {"description": "Перевод с карты на карту", "amount": 1000, "currency": "RUB"},
+        {"description": "Открытие вклада", "amount": 5000, "currency": "RUB"},
+        {"description": "Перевод на счет", "amount": 2000, "currency": "USD"},
+    ]
+    search_string = "несуществующая операция"
+    result = filter_transactions(transactions, search_string)
+    assert len(result) == 0
+
+
+def test_count_transactions_by_category():
+    """Тестирование подсчета транзакций по категориям."""
+    transactions = [
+        {"description": "Перевод с карты на карту", "amount": 1000, "currency": "RUB"},
+        {"description": "Открытие вклада", "amount": 5000, "currency": "RUB"},
+        {"description": "Перевод на счет", "amount": 2000, "currency": "USD"},
+    ]
+    categories = ["перевод", "вклад"]
+    result = count_transactions_by_category(transactions, categories)
+    assert result["вклад"] == 1
+    assert result["перевод"] == 2
+
+
+def test_count_transactions_by_category_empty():
+    """Тестирование подсчета транзакций по категориям, когда категории отсутствуют."""
+    transactions = [
+        {"description": "Перевод с карты на карту", "amount": 1000, "currency": "RUB"},
+        {"description": "Открытие вклада", "amount": 5000, "currency": "RUB"},
+    ]
+    categories = ["неизвестная категория"]
+    result = count_transactions_by_category(transactions, categories)
+    assert result["неизвестная категория"] == 0
