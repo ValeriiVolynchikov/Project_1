@@ -23,7 +23,7 @@ LOGGING_CONFIG = {
     'filename': LOG_FILE,
 }
 
-# Добавьте другие конфигурации, если необходимо
+# Получаем путь к базовой директории проекта
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent # Это указывает на директорию project/
 DATA_DIR = BASE_DIR / 'data'
