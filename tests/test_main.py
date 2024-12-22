@@ -6,9 +6,9 @@ import re
 
 import pytest
 
-from config import DATA_DIR, LOG_DIR
-from src.main import (filter_transactions, format_date, format_transaction, load_transactions, main, mask_account,
-                      mask_card, print_transaction)
+from config import LOG_DIR
+from main import (filter_transactions, format_date, format_transaction, load_transactions, main, mask_account,
+                  mask_card, print_transaction)
 
 # Настройка логирования
 logging.basicConfig(
