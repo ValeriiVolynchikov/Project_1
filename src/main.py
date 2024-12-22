@@ -36,7 +36,6 @@ def load_transactions(file_path: str):
             transactions = []
             for _, row in df.iterrows():
                 transaction = {
-                    #"id": row["id"],
                     "id": str(row["id"]),  # Преобразуем id в строку
                     "state": row["state"],
                     "date": row["date"],
@@ -298,8 +297,6 @@ def main():
             print_transaction(transaction)
     else:
         print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации.")
-
-
 
 
 if __name__ == "__main__":

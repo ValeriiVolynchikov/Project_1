@@ -1,15 +1,26 @@
 import csv
 import json
+import logging
 import os
 import re
 
 import pytest
 
-from src.main import (filter_transactions, format_date, load_transactions, mask_account,
-                      mask_card, print_transaction, format_transaction, main)
-# from config import DATA_DIR, LOG_DIR
-#
-# # Пример использования
+from config import DATA_DIR, LOG_DIR
+from src.main import (filter_transactions, format_date, format_transaction, load_transactions, main, mask_account,
+                      mask_card, print_transaction)
+
+# Настройка логирования
+logging.basicConfig(
+    level=logging.INFO,
+    handlers=[logging.StreamHandler(), logging.FileHandler(os.path.join(LOG_DIR, "app.log"), encoding="utf-8")],
+    format="%(asctime)s - %(levelname)s - %(message)s",
+)
+
+logger = logging.getLogger(__name__)
+
+
+# Пример использования
 # json_file = os.path.join(DATA_DIR, 'operations.json')
 # csv_file = os.path.join(DATA_DIR, 'transactions.csv')
 # excel_file = os.path.join(DATA_DIR, 'transactions_excel.xlsx')
@@ -36,7 +47,10 @@ def test_load_transactions_json_error(tmp_path):
 
 def test_load_transactions_csv_success(tmp_path):
     # Создаем временный CSV-файл
-    content = "id;state;date;amount;currency_name;currency_code;from;to;description\n1;EXECUTED;2023-01-01;100;USD;1234;5678;Test"
+    content = (
+        "id;state;date;amount;currency_name;currency_code;from;to;description\n"
+        "1;EXECUTED;2023-01-01;100;USD;1234;5678;Test"
+    )
     file = tmp_path / "test.csv"
     file.write_text(content, encoding="utf-8")
 
@@ -52,7 +66,6 @@ def test_load_transactions_unsupported_format(tmp_path):
 
     with pytest.raises(ValueError):
         load_transactions(str(file))
-
 
 
 def test_load_transactions_invalid_format():  # ТЕСТЫ ПРОВЕРЕННЫЕ
@@ -94,10 +107,8 @@ def load_transactions_(file_path):
             # Проверяем, что заголовки загружены
             if reader.fieldnames is None:
                 raise ValueError("CSV file does not have headers")
-
             # Очищаем заголовки от лишних пробелов
             headers = [header.strip() for header in reader.fieldnames]
-
             for row in reader:
                 # row должен быть словарем
                 if not isinstance(row, dict):
@@ -110,10 +121,7 @@ def load_transactions_(file_path):
                     "date": row.get("date", ""),
                     "operationAmount": {
                         "amount": row.get("amount", ""),
-                        "currency": {
-                            "name": row.get("currency_name", ""),
-                            "code": row.get("currency_code", "")
-                        },
+                        "currency": {"name": row.get("currency_name", ""), "code": row.get("currency_code", "")},
                     },
                     "from": row.get("from", ""),
                     "to": row.get("to", ""),
@@ -302,18 +310,16 @@ def test_print_transaction_various_formats(capsys):
     assert "Перевод с карты на карту" in captured.out
     assert "1000" in captured.out  # Проверяем, что вывод содержит сумму
 
+
 # Тесты для функции format_transaction
 def test_format_transaction():
     # Тест 1: Полные данные
     transaction = {
         "date": "2023-10-01",
         "description": "Перевод средств",
-        "operationAmount": {
-            "amount": "1000",
-            "currency": {"name": "RUB"}
-        },
+        "operationAmount": {"amount": "1000", "currency": {"name": "RUB"}},
         "from": "Счет 1234",
-        "to": "Счет 5678"
+        "to": "Счет 5678",
     }
     expected_output = "2023-10-01 Перевод средств\nСчет 1234 -> Счет 5678\nСумма: 1000 RUB\n"
     assert format_transaction(transaction) == expected_output
@@ -322,12 +328,9 @@ def test_format_transaction():
     transaction = {
         "date": "2023-10-02",
         "description": "Оплата",
-        "operationAmount": {
-            "amount": "500",
-            "currency": {}
-        },
+        "operationAmount": {"amount": "500", "currency": {}},
         "from": "Счет 1234",
-        "to": "Не указано"
+        "to": "Не указано",
     }
     expected_output = "2023-10-02 Оплата\nСчет 1234 -> Не указано\nСумма: 500 Не указано\n"
     assert format_transaction(transaction) == expected_output
@@ -339,12 +342,9 @@ def test_format_transaction():
 
     # Тест 4: Отсутствие даты и описания
     transaction = {
-        "operationAmount": {
-            "amount": "200",
-            "currency": {"name": "USD"}
-        },
+        "operationAmount": {"amount": "200", "currency": {"name": "USD"}},
         "from": "Счет 1111",
-        "to": "Счет 2222"
+        "to": "Счет 2222",
     }
     expected_output = "Не указано Не указано\nСчет 1111 -> Счет 2222\nСумма: 200 USD\n"
     assert format_transaction(transaction) == expected_output
@@ -353,29 +353,50 @@ def test_format_transaction():
     transaction = {
         "date": "2023-10-03",
         "description": "   Перевод   ",
-        "operationAmount": {
-            "amount": "300",
-            "currency": {"name": "EUR"}
-        },
+        "operationAmount": {"amount": "300", "currency": {"name": "EUR"}},
         "from": "Счет 3333",
-        "to": "Счет 4444"
+        "to": "Счет 4444",
     }
     expected_output = "2023-10-03    Перевод   \nСчет 3333 -> Счет 4444\nСумма: 300 EUR\n"
     assert format_transaction(transaction) == expected_output
 
-#
-# def test_main_json(monkeypatch, tmp_path):
-#     # Создаем временный JSON-файл
-#     data = [{"id": 1, "state": "EXECUTED", "date": "2023-01-01"}]
-#     file = tmp_path / "operations.json"
-#     file.write_text(json.dumps(data), encoding="utf-8")
-#
-#     # Указываем путь к файлу и эмулируем ввод
-#     monkeypatch.setattr("builtins.input", lambda _: "1")
-#     monkeypatch.setattr("config.DATA_DIR", str(tmp_path))  # Измените путь здесь
-#
-#     # Запускаем main
-#     main()
+
+@pytest.mark.timeout(10)
+def test_main_json(monkeypatch, tmp_path):
+    # Создаем временный JSON-файл
+    data = [
+        {
+            "id": 1,
+            "state": "EXECUTED",
+            "date": "2023-01-01",
+            "operationAmount": {"amount": "1000", "currency": {"name": "Ruble", "code": "RUB"}},
+        }
+    ]
+    file = tmp_path / "operations.json"
+    file.write_text(json.dumps(data), encoding="utf-8")
+
+    # Эмулируем ввод пользователя
+    monkeypatch.setattr(
+        "builtins.input",
+        lambda prompt: {
+            "Пользователь: ": "1",  # Выбор первого пункта меню
+            "Введите статус, по которому необходимо выполнить фильтрацию."
+            " Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING\nПользователь: ": "EXECUTED",
+            "Отсортировать операции по дате? Да/Нет\nПользователь: ": "нет",  # Ответ на сортировку
+            "Выводить только рублевые транзакции? Да/Нет\nПользователь: ": "да",  # Ответ на выбор валюты
+            "Отфильтровать список транзакций по определенному слову в описании? Да/Нет\n"
+            "Пользователь: ": "нет",  # Ответ на фильтрацию по описанию
+        }[prompt],
+    )  # Эмулируем ввод для каждого ожидаемого запроса
+
+    # Установите DATA_DIR для теста
+    monkeypatch.setattr("config.DATA_DIR", str(tmp_path))
+
+    # Печать перед вызовом main для отладки
+    print("Before calling main()")
+    main()  # Вызов функции main
+    print("After calling main()")
+
 
 if __name__ == "__main__":
     pytest.main()
