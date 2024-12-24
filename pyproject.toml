@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "pythonProject4"
+name = "pythonProject_4"
 version = "0.1.0"
 packages = [
-    { include = "pythonProject4", from = "src" }
+    { include = "pythonProject_4", from = "src" }
 ]
 description = "Виджет, который показывает несколько последних успешных банковских операций клиента банка"
 authors = ["Valerii Volynchikov <avto162@gmail.com>"]
