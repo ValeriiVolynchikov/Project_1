@@ -4,7 +4,7 @@ version = "0.1.0"
 packages = [
     { include = "pythonProject_4", from = "src" }
 ]
-description = "Виджет, который показывает несколько последних успешных банковских операций клиента банка"
+description = "Приложение для анализа банковских операций"
 authors = ["Valerii Volynchikov <avto162@gmail.com>"]
 readme = "README.md"
 
